@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./jquery.min.js"></script>
+		<link rel="stylesheet" href="style.css" />
+		<title>Craig List Redesigned</title>
+	</head>
+
+	<body>
+		<nav class="active">
+			<button class="ico-btn" id="nav-btn">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="white"
+					class="bi bi-arrow-right-short"
+					viewBox="0 0 16 16"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+					/>
+				</svg>
+			</button>
+			<div class="list">
+				<a href="#" class="list-item active" data-city="ahmedabad">ahmedabad</a>
+				<a href="#" class="list-item" data-city="bangalore">bangalore</a>
+				<a href="#" class="list-item" data-city="bhubaneswar">bhubaneswar</a>
+				<a href="#" class="list-item" data-city="chandigarh">chandigarh</a>
+				<a href="#" class="list-item" data-city="chennai">chennai</a>
+				<a href="#" class="list-item" data-city="delhi">delhi</a>
+			</div>
+		</nav>
+		<div id="app">
+			<div class="hero stays">
+				<h1 class="grad">
+					Find what you need in
+					<div id="city" class="highlight">Delhi</div>
+				</h1>
+				<div class="input-container">
+					<input type="text" placeholder="Search..." />
+					<button class="btn">Search</button>
+				</div>
+				<div class="choices">
+					<label class="container"
+						>Console
+						<input type="checkbox" checked="checked" />
+						<span class="checkmark"></span>
+					</label>
+
+					<label class="container"
+						>Appliances
+						<input type="checkbox" />
+						<span class="checkmark"></span>
+					</label>
+
+					<label class="container"
+						>Arts+Crafts
+						<input type="checkbox" />
+						<span class="checkmark"></span>
+					</label>
+
+					<label class="container"
+						>Auto Parts
+						<input type="checkbox" />
+						<span class="checkmark"></span>
+					</label>
+
+					<label class="container"
+						>Architecture
+						<input type="checkbox" />
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="item" data-price="300">
+					<img src="./imgs/art1.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art2.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art3.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art4.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art1.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art2.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art3.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art4.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+				<div class="item" data-price="300">
+					<img src="./imgs/art3.jpg" alt="" />
+					<div class="detail">
+						<h3 class="title">Lorem Ipsum Dolor</h3>
+						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script defer>
+	const checkNav = function () {
+		if ($(window).width() > 770) {
+			$("nav").addClass("hide active");
+			return;
+		}
+		$("nav").removeClass("hide active");
+		return;
+	};
+	let selected = [];
+	$(document).ready(function () {
+		checkNav();
+		window.addEventListener("resize", checkNav);
+		$(`.acc-btn:not(.active)~ul.list`).slideUp(200);
+		$(".list-item").click(function (e) {
+			e.preventDefault();
+			$(".list-item.active").removeClass("active");
+			$(this).addClass("active");
+			$("#city").text($(".list-item.active").data("city"));
+		});
+		$(".choices label input").click(function () {
+			selected = [];
+			$(".choices label input:checked").each(function () {
+				selected.push($(this).parent(".container").text().trim());
+			});
+			console.log(selected);
+		});
+		$("#nav-btn").click(function () {
+			if ($("nav").hasClass("active")) {
+				$("nav").removeClass("active");
+				return;
+			}
+			$("nav").addClass("active");
+		});
+		$("#city").click(function () {
+			const city = $(this).text().toLowerCase();
+			if ($("nav").hasClass("active")) {
+				$("nav").addClass("active");
+			}
+			$(".list-item.active").removeClass("active");
+			$(`.list-item[data-city="${city}"]`).addClass("active");
+		});
+		document.getElementById("city").click();
+	});
+</script>

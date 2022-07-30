@@ -1,0 +1,444 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap");
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: "Quicksand", sans-serif;
+	/* outline: 1px solid #00d084; */
+}
+:root {
+	--vivid-orange: #ff6900;
+	--vivid-amber: #fcb900;
+	--green-cyan: #7bdcb5;
+	--vivid-green-cyan: #00d084;
+	--lightest: rgb(248, 249, 253);
+	--purple: rgb(149, 85, 252);
+	--primary: #0d6efd;
+	--subwhite: rgb(208, 209, 218);
+}
+body {
+	width: 100%;
+}
+::-webkit-scrollbar {
+	appearance: none;
+	-webkit-appearance: none;
+}
+::-webkit-scrollbar {
+	display: block;
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	background-color: var(--lightest);
+}
+::-webkit-scrollbar-thumb {
+	height: 100px;
+	background-color: var(--purple) !important;
+}
+nav {
+	position: fixed;
+	width: 250px;
+	height: 100vh;
+	transform: translateX(-100%);
+	z-index: 3;
+	background-color: white;
+	bottom: 0px;
+	left: 0px;
+	transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+nav.active {
+	transform: translateX(0%);
+}
+#nav-btn {
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	transform: translateX(55px);
+	z-index: 4;
+	opacity: 1;
+	transition-property: transform, opacity;
+	transition-duration: 0.5s;
+	transition-delay: 0.25s;
+	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+nav.hide #nav-btn {
+	opacity: 0;
+	visibility: hidden;
+}
+nav.active #nav-btn {
+	transform: translateX(-10px);
+}
+.list {
+	margin-top: 50px;
+	height: 100%;
+	width: 100%;
+	gap: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px 15px;
+	overflow-y: auto;
+}
+.list::-webkit-scrollbar {
+	display: none;
+}
+
+#app {
+	width: 100%;
+	padding: 15px;
+	min-height: 100vh;
+	position: relative;
+	gap: 10px;
+}
+ul {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+svg {
+	width: 25px;
+	height: 25px;
+	fill: var(--primary);
+	transition-property: fill;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in;
+}
+.list-item.active svg {
+	fill: white;
+}
+button {
+	background-color: transparent;
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+.btn {
+	background-color: var(--purple);
+	color: white;
+	padding: 10px 20px;
+	font-size: 1.25rem;
+	border-radius: 15px;
+	display: inline-block;
+}
+input {
+	outline: none;
+	background-color: transparent;
+	border: none;
+}
+.hero {
+	position: relative;
+	margin-left: auto;
+	width: calc(100% - 270px);
+	min-height: 500px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 70px;
+}
+.hero::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+	background-attachment: fixed;
+	z-index: -1;
+	filter: blur(30px);
+	-webkit-filter: blur(30px);
+}
+.hero h1 {
+	font-size: clamp(3rem, -0.875rem + 8.333vw, 4.5rem);
+	font-weight: 400;
+}
+#city {
+	display: inline-block;
+	text-transform: capitalize;
+	text-decoration: underline;
+}
+.highlight {
+	color: var(--purple);
+	position: relative;
+	width: fit-content;
+	cursor: pointer;
+}
+
+.input-container {
+	width: calc(100% - 75px);
+	height: 65px;
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 0px 0px 25px 5px #a8a8a82b;
+}
+.input-container input {
+	width: calc(100% - 120px);
+	height: 100%;
+	padding: 10px 20px;
+	font-size: 1.5rem;
+}
+.input-container input::placeholder {
+	color: rgb(188, 188, 188);
+	transition: color 0.25s ease-in-out;
+}
+input:focus::placeholder {
+	color: transparent;
+}
+.hero h1.grad {
+	background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+}
+.col {
+	margin-top: 20px;
+	margin-left: auto;
+	width: calc(100% - 270px);
+	height: fit-content;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-auto-rows: 300px;
+	gap: 15px;
+}
+.item {
+	position: relative;
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	justify-self: center;
+	align-self: center;
+	border-radius: 15px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.125);
+}
+
+.item::before {
+	content: attr(data-price);
+	position: absolute;
+	background-color: white;
+	right: 20px;
+	top: 25px;
+	padding: 5px 10px;
+	border-radius: 10px;
+	color: black;
+}
+.item img {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border-radius: inherit;
+}
+.detail {
+	margin-top: 10px;
+	width: 100%;
+	height: fit-content;
+	color: #a4a4a4;
+}
+.item .title {
+	font-weight: 400;
+	color: black;
+	text-align: center;
+}
+.detail .addr {
+	margin-top: 5px;
+	color: inherit;
+	font-size: 0.95rem;
+}
+
+.list-item {
+	position: relative;
+	width: calc(100% - 20px);
+	text-align: center;
+	text-transform: capitalize;
+	max-width: 140px;
+	cursor: pointer;
+	font-size: 1rem;
+	padding: 15px 10px;
+	border-radius: 10px;
+	background-color: var(--lightest);
+	box-shadow: none;
+	transition-property: color, background-color;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in;
+}
+.list-item.active {
+	color: white;
+	background-color: var(--purple);
+}
+/* .list li:first-child {
+} */
+
+.list li .ico {
+	position: absolute;
+	color: var(--vivid-green-cyan);
+	right: 25px;
+	transform: translateX(-70px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in;
+}
+.list li:hover .ico {
+	transform: translateX(0px);
+	opacity: 1;
+}
+/* Column first */
+#brand {
+	width: 100%;
+	padding: 10px 0px;
+	font-size: 2rem;
+	color: var(--vivid-green-cyan);
+	text-align: center;
+}
+#brand a {
+	position: relative;
+	width: fit-content;
+}
+#brand a::before {
+	content: "";
+	position: absolute;
+	height: 2px;
+	width: 0%;
+	left: 0px;
+	background-color: var(--vivid-green-cyan);
+	bottom: 0px;
+	transition: width 0.5s ease-in-out;
+}
+#brand a:hover::before {
+	width: 100%;
+}
+a.account {
+	position: relative;
+	width: fit-content;
+	color: var(--vivid-green-cyan);
+	padding: 10px 0px 5px 0px;
+	display: block;
+	font-size: 1.2rem;
+}
+a.account::before {
+	content: "";
+	position: absolute;
+	height: 2px;
+	left: 0px;
+	width: 0%;
+	background-color: var(--vivid-green-cyan);
+	bottom: 0px;
+	transition: width 0.5s ease-in-out;
+}
+a.account:hover::before {
+	width: 100%;
+}
+.ico-btn {
+	width: 45px;
+	height: 45px;
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+}
+.ico-btn svg {
+	fill: var(--purple);
+	width: 30px;
+	height: 30px;
+}
+.choices {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+label.container {
+	display: inline-block;
+	position: relative;
+	padding-left: 35px;
+	width: fit-content;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 5px;
+	color: var(--purple);
+}
+
+label.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	border-radius: 5px;
+	background-color: rgb(255, 255, 255);
+}
+
+/* On mouse-over, add a grey background color */
+label.container:hover input ~ .checkmark {
+	background-color: rgb(255, 255, 255);
+}
+
+/* When the checkbox is checked, add a blue background */
+label.container input:checked ~ .checkmark {
+	background-color: var(--purple);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+label.container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+label.container .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+@media screen and (min-width: 300px) and (max-width: 770px) {
+	/* #app {
+	} */
+	.hero {
+		width: 100%;
+	}
+	.col {
+		width: 100%;
+		margin-left: 0px;
+		height: fit-content;
+	}
+	.item {
+		max-width: 200px;
+		height: 300px;
+	}
+}
+@media screen and (min-width: 300px) and (max-width: 450px) {
+	.col {
+		grid-template-columns: 1fr 1fr !important;
+	}
+	.input-container {
+		width: calc(100% - 20px);
+	}
+	.choices {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	}
+}
