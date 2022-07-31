@@ -5,11 +5,33 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="./jquery.min.js"></script>
+		<script src="./gsap.min.js"></script>
 		<link rel="stylesheet" href="style.css" />
 		<title>Craig List Redesigned</title>
 	</head>
 
 	<body>
+		<div class="modal">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				id="close"
+				fill="currentColor"
+				class="bi bi-x"
+				viewBox="0 0 16 16"
+			>
+				<path
+					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+				/>
+			</svg>
+			<div class="item" data-price="300" data-tag="art-craft">
+				<img src="./imgs/art1.jpg" alt="" />
+				<div class="detail">
+					<h3 class="title">Lorem Ipsum Dolor</h3>
+					<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
+				</div>
+			</div>
+		</div>
+
 		<nav class="active">
 			<button class="ico-btn" id="nav-btn">
 				<svg
@@ -45,7 +67,7 @@
 				</div>
 				<div class="choices">
 					<label class="container"
-						>Console
+						>Household
 						<input type="checkbox" checked="checked" />
 						<span class="checkmark"></span>
 					</label>
@@ -57,7 +79,7 @@
 					</label>
 
 					<label class="container"
-						>Arts+Crafts
+						>Art-Craft
 						<input type="checkbox" />
 						<span class="checkmark"></span>
 					</label>
@@ -76,63 +98,63 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="item" data-price="300">
+				<div class="item" data-price="300" data-tag="art-craft">
 					<img src="./imgs/art1.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="200" data-tag="art-craft">
 					<img src="./imgs/art2.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="100" data-tag="architecture">
 					<img src="./imgs/art3.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="500" data-tag="household">
 					<img src="./imgs/art4.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="800" data-tag="art-craft">
 					<img src="./imgs/art1.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="400" data-tag="art-craft">
 					<img src="./imgs/art2.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="600" data-tag="architecture">
 					<img src="./imgs/art3.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="700" data-tag="household">
 					<img src="./imgs/art4.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
 						<p class="addr">Lorem ipsum dolor sit amet consectetur.</p>
 					</div>
 				</div>
-				<div class="item" data-price="300">
+				<div class="item" data-price="900" data-tag="architecture">
 					<img src="./imgs/art3.jpg" alt="" />
 					<div class="detail">
 						<h3 class="title">Lorem Ipsum Dolor</h3>
@@ -144,6 +166,12 @@
 	</body>
 </html>
 <script defer>
+	const itemTl = gsap.timeline({
+		defaults: { ease: "power4.inOut", duration: 1 },
+	});
+	const modalTl = gsap.timeline({
+		defaults: { ease: "power4.inOut", duration: 2 },
+	});
 	const checkNav = function () {
 		if ($(window).width() > 770) {
 			$("nav").addClass("hide active");
@@ -155,6 +183,15 @@
 	let selected = [];
 	$(document).ready(function () {
 		checkNav();
+		// itemTl
+		// 	.fromTo("nav", { autoAlpha: 0 }, { autoAlpha: 1 })
+		// 	.fromTo(".hero", { autoAlpha: 0 }, { autoAlpha: 1 }, "-=0.75")
+		// 	.fromTo(
+		// 		".item",
+		// 		{ autoAlpha: 0 },
+		// 		{ autoAlpha: 1, stagger: 0.5 },
+		// 		"-=0.75"
+		// 	);
 		window.addEventListener("resize", checkNav);
 		$(`.acc-btn:not(.active)~ul.list`).slideUp(200);
 		$(".list-item").click(function (e) {
@@ -166,9 +203,9 @@
 		$(".choices label input").click(function () {
 			selected = [];
 			$(".choices label input:checked").each(function () {
-				selected.push($(this).parent(".container").text().trim());
+				selected.push($(this).parent(".container").text().trim().toLowerCase());
 			});
-			console.log(selected);
+			console.log("Selected: ", selected);
 		});
 		$("#nav-btn").click(function () {
 			if ($("nav").hasClass("active")) {
@@ -179,12 +216,44 @@
 		});
 		$("#city").click(function () {
 			const city = $(this).text().toLowerCase();
-			if ($("nav").hasClass("active")) {
+			if (!$("nav").hasClass("active")) {
 				$("nav").addClass("active");
 			}
 			$(".list-item.active").removeClass("active");
 			$(`.list-item[data-city="${city}"]`).addClass("active");
 		});
 		document.getElementById("city").click();
+		$(".col .item").click(function () {
+			const src = $(this).children("img").attr("src");
+			const tag = $(this).data("tag");
+			const price = $(this).data("price");
+			$(".modal .item img").attr("src", src);
+			$(".modal .item").attr("data-tag", tag);
+			$(".modal .item").attr("data-price", price);
+			if ($(".modal").hasClass("active")) {
+				return;
+			}
+			$(".modal").addClass("active");
+			modalTl
+				.fromTo(
+					".modal",
+					{ y: "-100%", x: "-50%", autoAlpha: 0 },
+					{ y: "-50%", x: "-50%", autoAlpha: 1 }
+				)
+				.then(() => {
+					$(".modal .item").addClass("active");
+				});
+		});
+		$("#close").click(function () {
+			if (!$(".modal").hasClass("active")) return;
+
+			$(".modal .item").removeClass("active");
+			modalTl.fromTo(
+				".modal",
+				{ y: "-50%", x: "-50%", autoAlpha: 1 },
+				{ delay: 1, y: "-100%", x: "-50%", autoAlpha: 0 }
+			);
+			$(".modal").removeClass("active");
+		});
 	});
 </script>
